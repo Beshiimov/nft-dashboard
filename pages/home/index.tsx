@@ -4,15 +4,20 @@ import {
     Main,
 } from '../../components/styles/sharedstyles'
 import Currencies from "./Currencies";
+import {useSelector} from "react-redux";
+import {RootState} from "../../redux/store";
 
 export const getStaticProps = async () => {
-  const res = await fetch('https://min-api.cryptocompare.com/data/pricemultifull?fsyms=BTC&tsyms=USD,EUR')
+  const res = await fetch('https://min-api.cryptocompare.com/data/pricemultifull?fsyms=BTC,ETH,BNB,DOGE,XPR&tsyms=USD')
   const data = await res.json()
-  if (!data) return {notFound: true}
-  return {props: {data}}
+
+  if (!data) {return {notFound: true}}
+  return {props: {data}, revalidate: 15}
 }
 
 const Home:FC = ({data}: any):JSX.Element => {
+  const {DISPLAY, RAW} = data
+
   return (
     <>
       <Head>
@@ -21,7 +26,7 @@ const Home:FC = ({data}: any):JSX.Element => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Main>
-        <Currencies data={data}/>
+        <Currencies data={DISPLAY}/>
       </Main>
     </>
   )

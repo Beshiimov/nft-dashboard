@@ -6,6 +6,8 @@ import GlobalStyle from '../components/styles/globalstyles'
 import {Layout} from "../components/styles/sharedstyles";
 import Nav from "../components/layouts/Nav";
 import Header from "../components/layouts/Header";
+import {Provider} from "react-redux";
+import {store} from "../redux/store";
 
 const light: DefaultTheme = {
   colors: {
@@ -46,11 +48,13 @@ const App:FC<AppProps> = ({ Component, pageProps }):JSX.Element => {
     <>
       <ThemeProvider theme={lightTheme === 'false' ? dark : light}>
         <GlobalStyle />
-        <Layout>
-          <Header/>
-          <Nav changeTheme={changeTheme}/>
-          <Component {...pageProps} />
-        </Layout>
+        <Provider store={store}>
+          <Layout>
+            <Header/>
+            <Nav changeTheme={changeTheme}/>
+            <Component {...pageProps} />
+          </Layout>
+        </Provider>
       </ThemeProvider>
     </>
   )

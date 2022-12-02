@@ -43,14 +43,17 @@ const Currency = styled.p`
 
 
 const Currencies = ({data}):JSX.Element => {
-  console.log(data)
-  const items = <CurrenciesItem>
-        <Title>
-          <Image src={btc} height={25} width={25} alt='bitcoin' />
-          <span>Bitcoin (24h)</span>
-        </Title>
-        <Currency>$32,454.44</Currency>
-      </CurrenciesItem>
+  let items = []
+
+  for (let i = 0; i < Object.keys(data).length; i++) {
+    items.push(<CurrenciesItem key={i}>
+      <Title>
+        <Image src={'https://www.cryptocompare.com' + Object.values(data)[i].USD.IMAGEURL} height={25} width={25} alt='bitcoin' />
+        <span>{Object.keys(data)[i]} (24h)</span>
+      </Title>
+      <Currency>{Object.values(data)[i].USD.PRICE}</Currency>
+    </CurrenciesItem>)
+  }
 
   return (
     <CurrenciesContainer>

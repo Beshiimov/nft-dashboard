@@ -14,6 +14,9 @@ const nextConfig = {
       },
     ]
   },
+  images: {
+    domains: ['www.cryptocompare.com'],
+  },
 }
 
 module.exports = nextConfig
