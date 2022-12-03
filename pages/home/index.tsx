@@ -1,23 +1,27 @@
-import {FC} from "react";
+import {FC, useEffect} from "react";
 import Head from 'next/head'
 import {
     Main,
 } from '../../components/styles/sharedstyles'
+
+import { wrapper} from "../../redux/store";
+import {fetchCurrencies} from "../../redux/slices/currencies/slice";
+import {useDispatch, useSelector} from "react-redux";
 import Currencies from "./Currencies";
-import {useSelector} from "react-redux";
-import {RootState} from "../../redux/store";
 
-export const getStaticProps = async () => {
-  const res = await fetch('https://min-api.cryptocompare.com/data/pricemultifull?fsyms=BTC,ETH,BNB,DOGE,XPR&tsyms=USD')
-  const data = await res.json()
 
-  if (!data) {return {notFound: true}}
-  return {props: {data}, revalidate: 15}
-}
-
-const Home:FC = ({data}: any):JSX.Element => {
-  const {DISPLAY, RAW} = data
-
+const Home:FC= ({initialState}: any):JSX.Element => {
+  const dispatch = useDispatch()
+  //
+  // useEffect(() => {
+  //   setInterval(() => {
+  //     const fetchInterval = async () => {
+  //       console.log('ffe')
+  //       await dispatch(fetchCurrencies())
+  //     }
+  //     fetchInterval()
+  //   },1000)
+  // }, [])
   return (
     <>
       <Head>
@@ -26,12 +30,15 @@ const Home:FC = ({data}: any):JSX.Element => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Main>
-        <Currencies data={DISPLAY}/>
+        <Currencies data={initialState.currenciesSlice.data.DISPLAY}/>
       </Main>
     </>
   )
 }
 
+export const getStaticProps = wrapper.getStaticProps(store => async () => {
+  await store.dispatch(fetchCurrencies())
+});
 
 
 export default Home

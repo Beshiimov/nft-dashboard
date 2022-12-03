@@ -7,7 +7,7 @@ import {Layout} from "../components/styles/sharedstyles";
 import Nav from "../components/layouts/Nav";
 import Header from "../components/layouts/Header";
 import {Provider} from "react-redux";
-import {store} from "../redux/store";
+import {store, wrapper} from "../redux/store";
 
 const light: DefaultTheme = {
   colors: {
@@ -43,7 +43,7 @@ const App:FC<AppProps> = ({ Component, pageProps }):JSX.Element => {
     localStorage.setItem('lightTheme', toggled)
     setLightTheme(toggled)
   }
-
+  const {store, props} = wrapper.useWrappedStore(pageProps);
   return (
     <>
       <ThemeProvider theme={lightTheme === 'false' ? dark : light}>

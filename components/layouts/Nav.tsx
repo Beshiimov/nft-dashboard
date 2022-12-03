@@ -25,7 +25,6 @@ const NavContainer = styled.div`
   text-align: center;
   color: ${({theme}) => theme.colors.primary};
   background-color: ${({theme}) => theme.colors.background};
-  border-right: 1px solid ${({theme}) => theme.colors.secondary};
   ${adaptiveValue('width', 40, 70, 1)}
 `
 

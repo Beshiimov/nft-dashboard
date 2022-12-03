@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
-import {appSliceType} from "./type";
+import {appSliceType} from "./types";
 
 const initialState: appSliceType = {
   currency: 'USD'
