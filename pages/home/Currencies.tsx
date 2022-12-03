@@ -1,11 +1,16 @@
 import {FC} from "react";
 import Image from "next/image"
 
-import {CoinType} from "../../types/fetch";
 import {Title, CurrenciesContainer, CurrenciesItem, Currency} from "../../components/styles/CurrenciesStyle";
+import {Display} from "../../types/fetch";
+
+type CurrenciesProps = {
+  data: Display
+}
 
 
-const Currencies:FC<CoinType> = ({data}):JSX.Element => {
+const Currencies:FC<CurrenciesProps> = ({data}):JSX.Element => {
+  console.log(data, '---2')
   let items = []
 
   for (let i = 0; i < Object.keys(data).length; i++) {

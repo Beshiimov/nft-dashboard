@@ -4,16 +4,16 @@ import {
     Main,
 } from '../../components/styles/sharedstyles'
 
-import {RootState, wrapper} from "../../redux/store";
+import {RootState, useAppDispatch, wrapper} from "../../redux/store";
 import {fetchCurrencies} from "../../redux/slices/currencies/slice";
-import {useDispatch, useSelector} from "react-redux";
+import { useSelector} from "react-redux";
 import Currencies from "./Currencies";
-import {CoinType} from "../../types/fetch";
+import {Display} from "../../types/fetch";
 
 
-const Home:FC= ():JSX.Element => {
-  const dispatch = useDispatch()
-  const data = useSelector<CoinType>((state:RootState) => state.currenciesSlice.data)
+const Home:FC = ():JSX.Element => {
+  const dispatch = useAppDispatch()
+  const data = useSelector<RootState, Display>(state => state.currenciesSlice.data.DISPLAY)
 
   useEffect(() => {
     const int = setInterval(() => {
@@ -33,7 +33,7 @@ const Home:FC= ():JSX.Element => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Main>
-        <Currencies data={data.DISPLAY}/>
+        <Currencies data={data}/>
       </Main>
     </>
   )
