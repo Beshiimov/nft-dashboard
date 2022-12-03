@@ -1,17 +1,28 @@
-import {FC} from "react";
+import {FC, useEffect} from "react";
 import Image from "next/image"
 
 import {Title, CurrenciesContainer, CurrenciesItem, Currency} from "../../components/styles/CurrenciesStyle";
 import {Display} from "../../types/fetch";
+import {useSelector} from "react-redux";
+import {RootState, useAppDispatch} from "../../redux/store";
+import {fetchCurrencies} from "../../redux/slices/currencies/slice";
 
-type CurrenciesProps = {
-  data: Display
-}
 
-
-const Currencies:FC<CurrenciesProps> = ({data}):JSX.Element => {
-  console.log(data, '---2')
+const Currencies:FC = ():JSX.Element => {
+  const data = useSelector<RootState, Display>(state => state.currenciesSlice.data.DISPLAY)
   let items = []
+
+  const dispatch = useAppDispatch()
+
+  useEffect(() => {
+    const int = setInterval(() => {
+      const fetchInterval = () => {
+        dispatch(fetchCurrencies())
+      }
+      fetchInterval()
+    },15000)
+    return () => clearInterval(int)
+  }, [])
 
   for (let i = 0; i < Object.keys(data).length; i++) {
     items.push(<CurrenciesItem key={i} href={"/currency/" + Object.keys(data)[i]}>
@@ -26,7 +37,7 @@ const Currencies:FC<CurrenciesProps> = ({data}):JSX.Element => {
             {Object.values(data)[i].USD.CHANGEPCT24HOUR}%
           </i> :
           <i style={{color: "#28d01a"}}>
-            +{Object.values(data)[i].USD.CHANGEPCT24HOUR}%
+            {'+' + Object.values(data)[i].USD.CHANGEPCT24HOUR}%
           </i>
         }
       </Currency>
