@@ -16,7 +16,7 @@ const GlobalStyle = createGlobalStyle`
   
   body, input, button, a {
     ${adaptiveValue('font-size', 14, 20, 1)}
-    font-family: ${poppins.style.fontFamily};
+    font-family: ${poppins.style.fontFamily}, Sans-Serif;
     font-weight: 400;
     transition: color .3s ease;
   }

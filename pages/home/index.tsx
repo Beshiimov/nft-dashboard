@@ -4,24 +4,27 @@ import {
     Main,
 } from '../../components/styles/sharedstyles'
 
-import { wrapper} from "../../redux/store";
+import {RootState, wrapper} from "../../redux/store";
 import {fetchCurrencies} from "../../redux/slices/currencies/slice";
 import {useDispatch, useSelector} from "react-redux";
 import Currencies from "./Currencies";
+import {CoinType} from "../../types/fetch";
 
 
-const Home:FC= ({initialState}: any):JSX.Element => {
+const Home:FC= ():JSX.Element => {
   const dispatch = useDispatch()
-  //
-  // useEffect(() => {
-  //   setInterval(() => {
-  //     const fetchInterval = async () => {
-  //       console.log('ffe')
-  //       await dispatch(fetchCurrencies())
-  //     }
-  //     fetchInterval()
-  //   },1000)
-  // }, [])
+  const data = useSelector<CoinType>((state:RootState) => state.currenciesSlice.data)
+
+  useEffect(() => {
+    const int = setInterval(() => {
+      const fetchInterval = () => {
+        dispatch(fetchCurrencies())
+      }
+      fetchInterval()
+    },15000)
+    return () => clearInterval(int)
+  }, [])
+
   return (
     <>
       <Head>
@@ -30,7 +33,7 @@ const Home:FC= ({initialState}: any):JSX.Element => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Main>
-        <Currencies data={initialState.currenciesSlice.data.DISPLAY}/>
+        <Currencies data={data.DISPLAY}/>
       </Main>
     </>
   )
@@ -38,6 +41,7 @@ const Home:FC= ({initialState}: any):JSX.Element => {
 
 export const getStaticProps = wrapper.getStaticProps(store => async () => {
   await store.dispatch(fetchCurrencies())
+  return {props: {}}
 });
 
 

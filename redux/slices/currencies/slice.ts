@@ -16,7 +16,7 @@ export const currenciesSlice = createSlice({
   },
   extraReducers: {
     [HYDRATE]: (state, action) => {
-      state.data = action.payload
+      state.data = action.payload.currenciesSlice.data
     }
   },
 })
