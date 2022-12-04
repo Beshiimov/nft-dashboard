@@ -14,6 +14,7 @@ export const makeStore = () => configureStore({
 
 export type RootStore = ReturnType<typeof makeStore>;
 export type RootState = ReturnType<RootStore['getState']>;
+
 export type AppThunk<ReturnType = void> = ThunkAction<ReturnType, RootState, unknown, Action<string>>;
 
 export const wrapper = createWrapper<Store<RootState>>(makeStore)

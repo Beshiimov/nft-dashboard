@@ -1,5 +1,6 @@
-import {createSlice} from '@reduxjs/toolkit'
+import {createSlice, Dispatch} from '@reduxjs/toolkit'
 import {HYDRATE} from "next-redux-wrapper";
+import {AppThunk} from "../../store";
 
 
 export const currenciesSlice = createSlice({
@@ -20,7 +21,7 @@ export const currenciesSlice = createSlice({
 const { setCurrencies } = currenciesSlice.actions
 
 
-export const fetchCurrencies = () => async (dispatch) => {
+export const fetchCurrencies = () => async (dispatch: Dispatch) => {
   const data = await (await fetch
   ('https://min-api.cryptocompare.com/data/pricemultifull?fsyms=BTC,ETH,BNB,DOGE,XPR&tsyms=USD'))
     ?.json()

@@ -25,7 +25,7 @@ const Home:FC = ():JSX.Element => {
 }
 
 export const getStaticProps = wrapper.getStaticProps(store => async () => {
-  await store.dispatch(fetchCurrencies())
+  await store.dispatch(fetchCurrencies()as any)
   return {props: {}}
 });
 

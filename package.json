@@ -7,7 +7,7 @@
   },
   "dependencies": {
     "@next/font": "^13.0.5",
-    "@reduxjs/toolkit": "^1.9.1",
+    "@reduxjs/toolkit": "https://pkg.csb.dev/reduxjs/redux-toolkit/commit/933aa4a1/@reduxjs/toolkit",
     "@types/react-redux": "^7.1.24",
     "chart.js": "^4.0.1",
     "framer-motion": "^7.6.17",
