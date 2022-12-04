@@ -7,7 +7,7 @@ import {Layout} from "../components/styles/sharedstyles";
 import Nav from "../components/layouts/Nav";
 import Header from "../components/layouts/Header";
 import {Provider} from "react-redux";
-import {store, wrapper} from "../redux/store";
+import {wrapper} from "../redux/store";
 
 const light: DefaultTheme = {
   colors: {
