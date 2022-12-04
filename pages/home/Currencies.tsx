@@ -2,15 +2,22 @@ import {FC, useEffect} from "react";
 import Image from "next/image"
 import {useDispatch, useSelector} from "react-redux";
 
-import {Display} from "../../types/fetch";
+import {Display, fetchCoinType} from "../../types/fetch";
 import {Title, CurrenciesContainer, CurrenciesItem, Currency} from "../../components/styles/CurrenciesStyle";
 import {RootState} from "../../redux/store";
 import {fetchCurrencies} from "../../redux/slices/currencies/slice";
 
 
 const Currencies:FC = ():JSX.Element => {
-  const data = useSelector<RootState, Display>(state => state.currenciesSlice.data.DISPLAY)
+  const fetchedData = useSelector<RootState, fetchCoinType>(state => state.currenciesSlice.data)
   let items = []
+
+  if (!fetchedData){
+    return <>Loading...</>
+  }
+
+  const data = fetchedData.DISPLAY
+
 
   const dispatch = useDispatch()
 
