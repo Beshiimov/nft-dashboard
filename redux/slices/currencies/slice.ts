@@ -1,31 +1,26 @@
-import {createSlice, PayloadAction} from '@reduxjs/toolkit'
-import {currenciesSliceType} from "./types";
+import {createSlice} from '@reduxjs/toolkit'
 import {HYDRATE} from "next-redux-wrapper";
-import {AppDispatch, AppThunk, RootState} from "../../store";
 
-const initialState: currenciesSliceType = {
-  data: null
-}
 
 export const currenciesSlice = createSlice({
   name: 'app',
-  initialState,
+  initialState: {} as any,
   reducers: {
     setCurrencies(state, action) {
       state.data = action.payload
     }
   },
-  extraReducers: {
-    [HYDRATE]: (state, action) => {
+  extraReducers: (builder => {
+    builder.addCase(HYDRATE, (state, action:any) => {
       state.data = action.payload.currenciesSlice.data
-    }
-  },
+    })
+  })
 })
 
 const { setCurrencies } = currenciesSlice.actions
 
 
-export const fetchCurrencies = () => async (dispatch: AppDispatch) => {
+export const fetchCurrencies = () => async (dispatch) => {
   const data = await (await fetch
   ('https://min-api.cryptocompare.com/data/pricemultifull?fsyms=BTC,ETH,BNB,DOGE,XPR&tsyms=USD'))
     ?.json()

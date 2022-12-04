@@ -52,7 +52,7 @@ const App:FC<AppProps> = ({ Component, pageProps }):JSX.Element => {
           <Layout>
             <Header/>
             <Nav changeTheme={changeTheme}/>
-            <Component {...pageProps} />
+            <Component {...props} />
           </Layout>
         </Provider>
       </ThemeProvider>

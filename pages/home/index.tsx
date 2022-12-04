@@ -1,4 +1,4 @@
-import {FC, useEffect} from "react";
+import {FC} from "react";
 import Head from 'next/head'
 import {
     Main,
@@ -28,6 +28,5 @@ export const getStaticProps = wrapper.getStaticProps(store => async () => {
   await store.dispatch(fetchCurrencies())
   return {props: {}}
 });
-
 
 export default Home

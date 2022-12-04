@@ -1,10 +1,10 @@
 import {FC, useEffect} from "react";
 import Image from "next/image"
+import {useDispatch, useSelector} from "react-redux";
 
-import {Title, CurrenciesContainer, CurrenciesItem, Currency} from "../../components/styles/CurrenciesStyle";
 import {Display} from "../../types/fetch";
-import {useSelector} from "react-redux";
-import {RootState, useAppDispatch} from "../../redux/store";
+import {Title, CurrenciesContainer, CurrenciesItem, Currency} from "../../components/styles/CurrenciesStyle";
+import {RootState} from "../../redux/store";
 import {fetchCurrencies} from "../../redux/slices/currencies/slice";
 
 
@@ -12,7 +12,7 @@ const Currencies:FC = ():JSX.Element => {
   const data = useSelector<RootState, Display>(state => state.currenciesSlice.data.DISPLAY)
   let items = []
 
-  const dispatch = useAppDispatch()
+  const dispatch = useDispatch()
 
   useEffect(() => {
     const int = setInterval(() => {
@@ -20,7 +20,7 @@ const Currencies:FC = ():JSX.Element => {
         dispatch(fetchCurrencies())
       }
       fetchInterval()
-    },15000)
+    },10000)
     return () => clearInterval(int)
   }, [])
 
