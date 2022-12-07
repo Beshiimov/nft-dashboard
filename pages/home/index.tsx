@@ -5,7 +5,7 @@ import {
 } from '../../components/styles/sharedstyles'
 
 import {wrapper} from "../../redux/store";
-import {fetchCurrencies} from "../../redux/slices/currencies/slice";
+import {fetchCoinsChart, fetchCurrencies} from "../../redux/slices/currencies/slice";
 import Currencies from "./Currencies";
 
 
@@ -26,6 +26,7 @@ const Home:FC = ():JSX.Element => {
 
 export const getStaticProps = wrapper.getStaticProps(store => async () => {
   await store.dispatch(fetchCurrencies())
+  await store.dispatch(fetchCoinsChart())
   return {props: {}}
 });
 

@@ -58,7 +58,7 @@ const Profile = styled.button`
 const Header = () => {
   return (
     <HeaderContainer>
-      <Link href="/">NFT</Link>
+      <Link href="/home">NFT</Link>
 
         <Search placeholder="Search">
           <input type="text" placeholder='Search'/>

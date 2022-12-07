@@ -55,7 +55,7 @@ const Nav:FC<NavProps> = ({changeTheme}):JSX.Element => {
         <Image src={moon} alt="Change Theme" height={25} width={25}/>
       </Button>
       <Column>
-        <Link href="/">
+        <Link href="/home">
           <Image src={homeImage} alt="Home" height={25} width={25}/>
         </Link>
         <Link href="/market">

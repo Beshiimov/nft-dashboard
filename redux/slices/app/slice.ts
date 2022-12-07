@@ -2,7 +2,8 @@ import { createSlice } from '@reduxjs/toolkit'
 import {appSliceType} from "./types";
 
 const initialState: appSliceType = {
-  currency: 'USD'
+  currency: 'USD',
+  coins: ['BTC','ETH','BNB','DOGE','XPR']
 }
 
 export const appSlice = createSlice({
