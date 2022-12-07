@@ -1,12 +1,14 @@
 import {FC} from "react";
 import Head from 'next/head'
 import {
-    Main,
+  HomeLayout,
+  Main,
 } from '../../components/styles/sharedstyles'
 
 import {wrapper} from "../../redux/store";
 import {fetchCoinsChart, fetchCurrencies} from "../../redux/slices/currencies/slice";
 import Currencies from "./Currencies";
+import Exchange from "./Exchange";
 
 
 const Home:FC = ():JSX.Element => {
@@ -18,7 +20,10 @@ const Home:FC = ():JSX.Element => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Main>
-        <Currencies />
+        <HomeLayout>
+          <Exchange />
+          <Currencies />
+        </HomeLayout>
       </Main>
     </>
   )

@@ -41,8 +41,8 @@ const data = (element, growUp) => {
           const ctx = context.chart.ctx;
           const gradient = ctx.createLinearGradient(0, 0, 0, 120);
           growUp ?
-            gradient.addColorStop(0, "rgb(0,255,62)") :
-            gradient.addColorStop(0, "rgb(220,9,9)")
+            gradient.addColorStop(.1, "rgb(0,255,62)") :
+            gradient.addColorStop(.1, "rgb(220,9,9)");
           gradient.addColorStop(1, "rgba(0,0,0,0)");
           return gradient;
         },
@@ -75,8 +75,7 @@ const options = {
   },
   layout: {
     padding: {
-      top: 30,
-      bottom: 10,
+      top: 35,
     },
   }
 };

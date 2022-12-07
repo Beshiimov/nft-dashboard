@@ -18,6 +18,15 @@ const Layout = styled.div`
   grid-template-columns: auto 1fr;
 `
 
+const HomeLayout = styled.div`
+  display: grid;
+  grid-template-areas:
+          "currencies exchange"
+          "nfts exchange";
+  grid-template-rows: auto 1fr;
+  grid-template-columns: auto 1fr;
+`
+
 const Title = styled.h1`
   margin: 0;
   line-height: 1.15;
@@ -38,4 +47,4 @@ const Title = styled.h1`
 
 
 
-export { Main, Title, Layout }
+export { Main, Title, Layout, HomeLayout }

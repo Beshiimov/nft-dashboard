@@ -9,6 +9,7 @@ const CurrenciesContainer = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
+  grid-area: currencies;
   //justify-content: center;
 `
 const CurrenciesItem = styled(Link)`
@@ -37,6 +38,7 @@ const Title = styled.div`
     color: ${({theme}) => theme.colors.primary};
     font-weight: 600;
     span {
+      opacity: .6;
       ${adaptiveValue('font-size', 6, 10, 1)};
     }
   }
@@ -63,7 +65,7 @@ const BgChart = styled.div`
   right: 0;
 
   & canvas {
-    margin: -2px;
+    margin: -5px;
   }
 `
 
