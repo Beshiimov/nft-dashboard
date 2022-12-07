@@ -26,14 +26,15 @@ const CurrenciesItem = styled(Link)`
   overflow: hidden;
 `
 const Title = styled.div`
-  mix-blend-mode: difference;
   display: flex;
   align-items: center;
   margin-bottom: 8px;
   & img {
+    mix-blend-mode: initial;
     margin-right: 10px;
   }
   span {
+    color: ${({theme}) => theme.colors.primary};
     font-weight: 600;
     span {
       ${adaptiveValue('font-size', 6, 10, 1)};
