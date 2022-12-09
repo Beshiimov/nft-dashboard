@@ -3,28 +3,33 @@ import {adaptiveValue} from "./px2vw";
 import Link from "next/link";
 
 const CurrenciesContainer = styled.div`
-  /*${adaptiveValue('height', 90, 120, 1)}*/
-  height: auto;
+  height: fit-content;
   width: 100%;
   display: flex;
   flex-direction: row;
   align-items: center;
   grid-area: currencies;
+  padding: 0 .5rem;
+  // ${adaptiveValue("margin-bottom", 10, 15, 1)};
   //justify-content: center;
 `
 const CurrenciesItem = styled(Link)`
-  height: 100%;
-  ${adaptiveValue('min-width', 200, 250, 1)};
+  ${adaptiveValue('height', 75, 120, 1)}
+  ${adaptiveValue('min-width', 140, 250, 1)};
   position: relative;
-  border: 1px solid ${({theme}) => theme.colors.secondary};
   border-radius: 12px;
   padding: 15px 12px;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  flex: 1 1 auto;
   margin-right: 8px;
   background-color: ${({theme}) => theme.colors.background};
   overflow: hidden;
+  
+  &:last-child {
+    margin-right: 0;
+  }
 `
 const Title = styled.div`
   display: flex;
@@ -46,7 +51,7 @@ const Title = styled.div`
 const Currency = styled.p`
   margin: 0 ;
   font-weight: 600;
-  ${adaptiveValue('font-size', 20, 26, 1)};
+  ${adaptiveValue('font-size', 14, 26, 1)};
   position: relative;
   & i {
     position: absolute;

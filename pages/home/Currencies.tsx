@@ -1,4 +1,4 @@
-import {FC, useEffect, useState} from "react";
+import {FC, useEffect} from "react";
 import Image from "next/image"
 import {useDispatch, useSelector} from "react-redux";
 

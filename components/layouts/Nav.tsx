@@ -4,34 +4,31 @@ import styled from 'styled-components'
 
 import homeImage from "/public/icons/home.svg"
 import marketImage from "/public/icons/market.svg"
-import moon from "/public/icons/moon.svg"
 import {FC} from "react";
 import {adaptiveValue} from "../styles/px2vw";
 
-type NavProps = {
-  changeTheme: () => void
-}
+
 
 const NavContainer = styled.div`
   position: sticky;
-  top: 0;
+  ${adaptiveValue('top', 49, 68, 1)};
   left: 0;
-  grid-area: nav;
+  height:  calc(100vh - (49px + 20 * ((100vw - 320px) / 1660)));
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  justify-content: center;
   width: fit-content;
   min-height: 400px;
   text-align: center;
   color: ${({theme}) => theme.colors.primary};
-  background-color: ${({theme}) => theme.colors.background};
+  border-right: 1px solid ${({theme}) => theme.colors.primary};
+  padding: 0 5px;
   ${adaptiveValue('width', 40, 70, 1)}
 `
 
 const Column = styled.div`
-  margin-top: 20vh;
+  margin-top: -10vh;
   display: flex;
-  justify-content: center;
   align-items: center;
   flex-direction: column;
   & a {
@@ -43,17 +40,11 @@ const Column = styled.div`
   }
 `
 
-const Button = styled.button`
-  padding: 20px 0;
-`
 
-const Nav:FC<NavProps> = ({changeTheme}):JSX.Element => {
+const Nav:FC = ():JSX.Element => {
 
   return (
     <NavContainer>
-      <Button onClick={changeTheme}>
-        <Image src={moon} alt="Change Theme" height={25} width={25}/>
-      </Button>
       <Column>
         <Link href="/home">
           <Image src={homeImage} alt="Home" height={25} width={25}/>

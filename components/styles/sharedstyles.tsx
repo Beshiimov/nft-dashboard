@@ -1,31 +1,19 @@
 import styled from 'styled-components'
 
-const Main = styled.main`
-  grid-area: main;
+const Layout = styled.main`
   height: 100%;
   width: 100%;
+  min-height: 500px;
+  display: flex;
+  flex-direction: row;
   max-width: 1980px;
-  padding: 0.5rem;
+  margin: 0 auto;
 `
 
-const Layout = styled.div`
-  min-height: 100vh;
-  display: grid;
-  grid-template-areas:
-          "nav header"
-          "nav main";
-  grid-template-rows: auto 1fr;
-  grid-template-columns: auto 1fr;
+const Main = styled.main`
+  flex: 1 1 auto;
 `
 
-const HomeLayout = styled.div`
-  display: grid;
-  grid-template-areas:
-          "currencies exchange"
-          "nfts exchange";
-  grid-template-rows: auto 1fr;
-  grid-template-columns: auto 1fr;
-`
 
 const Title = styled.h1`
   margin: 0;
@@ -47,4 +35,4 @@ const Title = styled.h1`
 
 
 
-export { Main, Title, Layout, HomeLayout }
+export { Layout, Title, Main }

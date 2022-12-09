@@ -5,6 +5,13 @@ import {adaptiveValue} from "../styles/px2vw";
 import ava from "/public/icons/ava.png"
 import Link from "next/link";
 import search from "/public/icons/search.svg"
+import moon from "/public/icons/moon.svg"
+import {useContext, useEffect} from "react";
+import {LightThemeContext} from "../../pages/_app";
+import {useDispatch, useSelector} from "react-redux";
+import {RootState} from "../../redux/store";
+import {changeSearchText} from "../../redux/slices/app/slice";
+
 
 const HeaderContainer = styled.div`
   display: flex;
@@ -14,13 +21,12 @@ const HeaderContainer = styled.div`
   position: sticky;
   top: 0;
   left: 0;
+  z-index: 10;
   height: fit-content;
   width: 100%;
-  grid-area: header;
   ${adaptiveValue('padding', 5, 10, 1)};
 
   & div, input{
-    margin: 0 5px;
     border-radius: 8px;
   }
   & > a {
@@ -43,6 +49,16 @@ const Search = styled.div`
   }
 `
 
+const RightSide = styled.div`
+  display: flex;
+`
+
+const Button = styled.button`
+  display: flex;
+  align-items: center;
+  margin-left: 1vw;
+`
+
 const Profile = styled.button`
   display: flex;
   align-items: center;
@@ -56,21 +72,48 @@ const Profile = styled.button`
 `
 
 const Header = () => {
+  const dispatch = useDispatch()
+  const {lightTheme, setLightTheme} = useContext(LightThemeContext)
+  const searchText = useSelector((state: RootState) => state.appSlice.searchText)
+
+
+  useEffect(() => {
+    if ((!localStorage.lightTheme) && (localStorage.lightTheme !== 'true' || 'false')) {
+      localStorage.setItem('lightTheme', 'false')
+    }
+    setLightTheme(localStorage.getItem('lightTheme'))
+  }, [])
+
+  const changeTheme = () => {
+    const toggled = lightTheme === 'true' ? 'false' : 'true'
+    localStorage.setItem('lightTheme', toggled)
+    setLightTheme(toggled)
+  }
+
+  const inputChange = (e) => {
+    dispatch(changeSearchText(e.target.value))
+  }
+
   return (
     <HeaderContainer>
       <Link href="/home">NFT</Link>
 
         <Search placeholder="Search">
-          <input type="text" placeholder='Search'/>
+          <input type="text" placeholder='Search' value={searchText} onChange={inputChange}/>
           <button>
             <Image src={search} width={15} height={15} alt="Search" />
           </button>
         </Search>
 
-      <Profile>
-        <span>User</span>
-        <Image src={ava} width={20} height={20}  alt="Avatar" />
-      </Profile>
+      <RightSide>
+        <Button onClick={changeTheme}>
+          <Image src={moon} alt="Change Theme" height={25} width={25}/>
+        </Button>
+        <Profile>
+          <span>User</span>
+          <Image src={ava} width={20} height={20}  alt="Avatar" />
+        </Profile>
+      </RightSide>
 
     </HeaderContainer>
   );

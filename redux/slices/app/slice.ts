@@ -3,7 +3,8 @@ import {appSliceType} from "./types";
 
 const initialState: appSliceType = {
   currency: 'USD',
-  coins: ['BTC','ETH','BNB','DOGE','XPR']
+  coins: ['BTC','ETH','BNB','DOGE','XPR'],
+  searchText: ''
 }
 
 export const appSlice = createSlice({
@@ -12,9 +13,12 @@ export const appSlice = createSlice({
   reducers: {
     changeCurrency: (state, action) => {
       state.currency = action.payload
+    },
+    changeSearchText: (state, action) => {
+      state.searchText = action.payload
     }
   },
 })
 
-export const { changeCurrency } = appSlice.actions
+export const { changeCurrency, changeSearchText } = appSlice.actions
 export default appSlice.reducer
