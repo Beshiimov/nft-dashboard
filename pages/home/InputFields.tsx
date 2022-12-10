@@ -6,6 +6,7 @@ import {RootState} from "../../redux/store";
 
 import {Field} from "../../components/styles/ExchangerStyle";
 import arrowDown from "/public/icons/arrow.svg"
+import {InDisplay} from "../../redux/slices/currencies/types";
 
 export type fieldType = {
   input: '' | number,
@@ -20,8 +21,9 @@ const InputFields:FC = () => {
     isOpen: false
   })
 
-  const coins = useSelector((state: RootState) => state.currenciesSlice.display)
-  if (!coins) return <>Something Gone Wrong</>
+  const coins:InDisplay[] = useSelector((state: RootState) => state.currenciesSlice.display)
+  console.log(coins)
+  if (!coins[0].Name) return <>Something Gone Wrong</>
 
   const coinListRef = useRef(null)
   const buttonRef = useRef(null)
@@ -38,7 +40,6 @@ const InputFields:FC = () => {
   }
 
   const onClickButton = (i: number) => {
-
     setField({input: field.input, index: i, isOpen: false})
   }
 
