@@ -12,14 +12,14 @@ const openAnimation = keyframes`
   }
   100% {
     pointer-events: auto;
-    ${adaptiveValue('height', 160, 220, 1)};
+    ${adaptiveValue('height', 160, 200, 1)};
   }
 `
 const closeAnimation = keyframes`
   0% {
     pointer-events: auto;
     opacity: 1;
-    ${adaptiveValue('height', 160, 220, 1)};
+    ${adaptiveValue('height', 160, 200, 1)};
   }
   80% {
     opacity: 1;
@@ -50,11 +50,10 @@ const Title = styled.div`
   margin: 0 0 15px;
   
   h3 {
-    margin: 0;
-    opacity: .6;
+    opacity: .8;
     display: inline-block;
-    font-weight: 400;
   }
+  
   h2 {
     font-weight: 800;
     display: inline-block;
@@ -62,8 +61,13 @@ const Title = styled.div`
   }
 `
 
+const InputTitle = styled.div`
+  opacity: .6;
+  ${adaptiveValue('font-size', 12, 16, 1)}
+  ${adaptiveValue('line-height', 16, 22, 1)}
+`
+
 const Field = styled.div`
-  border-bottom: 1px solid ${({theme}) => theme.colors.third};
   margin-bottom: 10px;
   display: flex;
   align-items: center;
@@ -72,7 +76,7 @@ const Field = styled.div`
   position: relative;
   
   & input {
-    padding: 5px 10px;
+    padding: 8px 10px;
     height: 100%;
     width: 100%;
     ${adaptiveValue('font-size', 10, 14, 1)};
@@ -108,6 +112,7 @@ const CoinList = styled.div<{open: boolean}>`
   position: absolute;
   z-index: 9;
   height: 0;
+  width: 150px;
   top: 120%;
   right: 0;
   border-radius: 8px;
@@ -123,7 +128,6 @@ const CoinList = styled.div<{open: boolean}>`
   transition: all .3s ease;
 
   & button {
-    
     width: 100%;
     display: flex;
     align-items: center;
@@ -131,9 +135,6 @@ const CoinList = styled.div<{open: boolean}>`
     border-right: 2px solid transparent;
     transition: all .3s ease;
     
-    h4 {
-      margin-right: 20px;
-    }
     &:hover {
       border-right: 2px solid ${({theme}) => theme.colors.secondary};
     }
@@ -141,4 +142,4 @@ const CoinList = styled.div<{open: boolean}>`
 `
 
 
-export {ExchangeContainer, Field, Title, CoinList, Button}
+export {ExchangeContainer, Field, Title, CoinList, Button, InputTitle}

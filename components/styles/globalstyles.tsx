@@ -39,14 +39,20 @@ const GlobalStyle = createGlobalStyle`
   }
 
   h1 {
-    ${adaptiveValue('font-size', 20, 28, 1)}
+    ${adaptiveValue('font-size', 20, 28, 1)};
+  }
+  
+  h3 {
+    font-weight: 600;
+    ${adaptiveValue('font-size', 16, 22, 1)};
+    margin: 0;
   }
 
   h4 {
     font-weight: 400;
     margin: 0;
-    ${adaptiveValue('font-size', 14, 18, 1)}
-    ${adaptiveValue('line-height', 26, 32, 1)}
+    ${adaptiveValue('font-size', 14, 18, 1)};
+    ${adaptiveValue('line-height', 26, 32, 1)};
   }
 
   a, button {

@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import {  Main, Title } from '../../components/styles/sharedstyles'
+import {  Main, Title } from '../components/styles/sharedstyles'
 import Head from "next/head";
 
 const Market = ():JSX.Element => {

@@ -3,13 +3,13 @@ import Head from 'next/head'
 import {
   Layout,
   Main
-} from '../../components/styles/sharedstyles'
+} from '../components/styles/sharedstyles'
 
-import {wrapper} from "../../redux/store";
-import {fetchCoinsChart, fetchCurrencies} from "../../redux/slices/currencies/slice";
-import Currencies from "./Currencies";
-import Exchange from "./Exchange";
-import Nav from "../../components/layouts/Nav";
+import {wrapper} from "../redux/store";
+import {fetchCoinsChart, fetchCurrencies} from "../redux/slices/currencies/slice";
+import Currencies from "../components/home/Currencies";
+import Exchange from "../components/home/Exchange";
+import Nav from "../components/layouts/Nav";
 
 
 const Home:FC = ():JSX.Element => {

@@ -8,7 +8,7 @@ import {
   CurrenciesItem,
   Currency,
   BgChart
-} from "../../components/styles/CurrenciesStyle";
+} from "../styles/CurrenciesStyle";
 import {RootState} from "../../redux/store";
 import {fetchCurrencies} from "../../redux/slices/currencies/slice";
 import {fetchStatus} from "../../types/fetchTypes";
