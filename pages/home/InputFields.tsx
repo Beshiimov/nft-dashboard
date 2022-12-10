@@ -21,9 +21,11 @@ const InputFields:FC = () => {
   })
 
   const coins = useSelector((state: RootState) => state.currenciesSlice.display)
+  if (!coins) return <>Something Gone Wrong</>
 
   const coinListRef = useRef(null)
   const buttonRef = useRef(null)
+
 
   const setFields = (e: ChangeEvent<HTMLInputElement>) => {
     let value: '' | number = +e.target.value
@@ -35,6 +37,10 @@ const InputFields:FC = () => {
     setField({input: field.input, index: field.index, isOpen: boolean ? boolean : !field.isOpen})
   }
 
+  const onClickButton = (i: number) => {
+
+    setField({input: field.input, index: i, isOpen: false})
+  }
 
   useEffect(() => {
     const clickOutside = (event: Event) => {
@@ -46,9 +52,9 @@ const InputFields:FC = () => {
     }
     document.body.addEventListener('mousedown', clickOutside)
     return () => document.body.removeEventListener('mousedown', clickOutside)
-  }, [])
+  }, [field])
 
-  console.log(field)
+
   return (
     <>
       <h4>{coins[field.index].Name}</h4>
@@ -75,7 +81,7 @@ const InputFields:FC = () => {
         </Button>
         <CoinList open={field.isOpen} ref={coinListRef}>
           {coins.map((e, i:number) =>
-            <button key={e.Name} onClick={() => setField({input: field.input, index: i, isOpen: false})}>
+            <button key={e.Name} onClick={() => onClickButton(i)}>
               <h4>{e.Name}</h4>
               <Image
                 src={'https://www.cryptocompare.com' + e.USD.IMAGEURL}
