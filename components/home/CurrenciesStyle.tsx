@@ -1,31 +1,30 @@
 import styled from "styled-components";
-import {adaptiveValue} from "./px2vw";
+import {adaptiveValue} from "../styles/px2vw";
 import Link from "next/link";
+import {sizes} from '../styles/globalstyles';
 
 const CurrenciesContainer = styled.div`
   height: fit-content;
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  grid-area: currencies;
-  padding: 0 .5rem;
-  // ${adaptiveValue("margin-bottom", 10, 15, 1)};
-  //justify-content: center;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  grid-gap: .5rem;
+  ${adaptiveValue("margin-bottom", 15, 22, 1)};
+  
+  @media (max-width: ${sizes.tablet}) {
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  }
 `
 const CurrenciesItem = styled(Link)`
-  ${adaptiveValue('height', 75, 120, 1)}
-  ${adaptiveValue('min-width', 140, 250, 1)};
+  ${adaptiveValue('height', 65, 120, 1)}
   position: relative;
   border-radius: 12px;
-  padding: 15px 12px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  flex: 1 1 auto;
-  margin-right: 8px;
   background-color: ${({theme}) => theme.colors.background};
   overflow: hidden;
+  padding: .5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
   
   &:last-child {
     margin-right: 0;
@@ -34,7 +33,7 @@ const CurrenciesItem = styled(Link)`
 const Title = styled.div`
   display: flex;
   align-items: center;
-  margin-bottom: 8px;
+  ${adaptiveValue('margin-bottom', 0, 10, 1)};
   & img {
     mix-blend-mode: initial;
     margin-right: 10px;
@@ -42,6 +41,7 @@ const Title = styled.div`
   span {
     color: ${({theme}) => theme.colors.primary};
     font-weight: 600;
+    
     span {
       opacity: .6;
       ${adaptiveValue('font-size', 6, 10, 1)};

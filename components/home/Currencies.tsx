@@ -8,13 +8,12 @@ import {
   CurrenciesItem,
   Currency,
   BgChart
-} from "../styles/CurrenciesStyle";
+} from "./CurrenciesStyle";
 import {RootState} from "../../redux/store";
 import {fetchCurrencies} from "../../redux/slices/currencies/slice";
 import {fetchStatus} from "../../types/fetchTypes";
 import ChartLine from "./ChartLine";
 import {InDisplay} from "../../redux/slices/currencies/types";
-
 
 
 const Currencies:FC = ():JSX.Element => {

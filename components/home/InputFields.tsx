@@ -1,8 +1,8 @@
 import React, {ChangeEvent, FC, useEffect, useRef, useState} from 'react';
-import {Button, CoinList, InputTitle} from "../styles/ExchangerStyle";
+import {Button, CoinList, InputTitle} from "./ExchangerStyle";
 import Image from "next/image";
 
-import {Field} from "../styles/ExchangerStyle";
+import {Field} from "./ExchangerStyle";
 import arrowDown from "/public/icons/arrow.svg"
 import {InDisplay} from "../../redux/slices/currencies/types";
 

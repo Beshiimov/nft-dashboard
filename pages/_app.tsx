@@ -10,8 +10,8 @@ import {wrapper} from "../redux/store";
 const light: DefaultTheme = {
   colors: {
     primary: '#000',
-    secondary: 'rgba(246,209,185,0.75)',
-    third: 'rgba(0,0,0,0.5)',
+    secondary: 'saddlebrown',
+    third: 'rgba(0,0,0,0.3)',
     background: '#f0f8ff',
     backgroundBody: '#e6f3ff',
   },

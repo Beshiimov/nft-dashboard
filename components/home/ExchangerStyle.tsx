@@ -1,5 +1,5 @@
 import styled, {keyframes} from "styled-components";
-import {adaptiveValue} from "./px2vw";
+import {adaptiveValue} from "../styles/px2vw";
 
 const openAnimation = keyframes`
   0% {
@@ -21,24 +21,34 @@ const closeAnimation = keyframes`
     opacity: 1;
     ${adaptiveValue('height', 160, 200, 1)};
   }
-  80% {
-    opacity: 1;
-  }
-  100% {
-    pointer-events: none;
+  90% {
     opacity: 0;
     height: 0;
+    pointer-events: none;
   }
+  100% {
+    opacity: 0;
+  }
+`
+
+const openButtonAnimation = keyframes`
+  100% {
+    opacity: 1;
+  }
+`
+const closeButtonAnimation = keyframes`
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+
 `
 
 /*---------------------------------*/
 const ExchangeContainer = styled.div`
-  position: sticky;
-  ${adaptiveValue('top', 49, 68, 1)};
-  ${adaptiveValue('width', 15, 300, 1)};
   height: fit-content;
-  padding: 0.5rem;
-  margin-right: 0.5rem;
   line-height: 1rem;
   border-radius: 8px;
 `
@@ -71,8 +81,8 @@ const Field = styled.div`
   margin-bottom: 10px;
   display: flex;
   align-items: center;
-  border-radius: 8px;
   background-color: ${({theme}) => theme.colors.background};
+  border-radius: 8px;
   position: relative;
   
   & input {
@@ -96,7 +106,7 @@ const Button = styled.div<{open: boolean}>`
   cursor: pointer;
   display: flex;
   align-items: center;
-  height: 25px;
+  height: fit-content;
   z-index: 5;
   
   & > img:last-child {
@@ -128,13 +138,17 @@ const CoinList = styled.div<{open: boolean}>`
   transition: all .3s ease;
 
   & button {
+    overflow-y: hidden;
     width: 100%;
+    opacity: 0;
     display: flex;
     align-items: center;
     justify-content: space-between;
     border-right: 2px solid transparent;
+    animation: ${({ open }) =>
+            (open === false ? closeButtonAnimation : openButtonAnimation)} .5s ease forwards;;
     transition: all .3s ease;
-    
+
     &:hover {
       border-right: 2px solid ${({theme}) => theme.colors.secondary};
     }

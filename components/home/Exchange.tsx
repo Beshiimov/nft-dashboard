@@ -2,7 +2,7 @@ import {FC, useState} from 'react';
 import {useSelector} from "react-redux";
 
 import {RootState} from "../../redux/store"
-import {ExchangeContainer, Title} from "../styles/ExchangerStyle";
+import {ExchangeContainer, Title} from "./ExchangerStyle";
 import InputFields from "./InputFields";
 import {InDisplay} from '../../redux/slices/currencies/types';
 import {setExchangeToState} from '../utils/setExchangeToState';
@@ -37,7 +37,7 @@ const Exchange:FC = () => {
     <ExchangeContainer>
       <Title>
         <h3>Exchange</h3>
-        <div>{currency}</div>
+        <h3>{currency}</h3>
       </Title>
       <InputFields
         index={inputs.firstIndex}

@@ -11,13 +11,14 @@ import {LightThemeContext} from "../../pages/_app";
 import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "../../redux/store";
 import {changeSearchText} from "../../redux/slices/app/slice";
+import {sizes} from '../styles/globalstyles';
 
 
 const HeaderContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  backdrop-filter: blur(5px);
+  backdrop-filter: blur(10px);
   position: sticky;
   top: 0;
   left: 0;
@@ -25,13 +26,16 @@ const HeaderContainer = styled.div`
   height: fit-content;
   width: 100%;
   ${adaptiveValue('padding', 5, 10, 1)};
-
+  
   & div, input{
     border-radius: 8px;
   }
+  
   & > a {
+    min-width: fit-content;
+    padding-right: 10px;
     font-weight: 800;
-    ${adaptiveValue('font-size', 20, 24, 1)}
+    ${adaptiveValue('font-size', 18, 24, 1)}
     color: ${({theme}) => theme.colors.primary};
   }
 `
@@ -47,6 +51,17 @@ const Search = styled.div`
   & input {
     width: 100%;
   }
+  button {
+    display: flex;
+    align-items: center;
+  }
+  
+  @media (max-width: ${sizes.mobileL}) {
+    &:focus {
+      background-color: #900;
+    }
+    width: fit-content;
+  }
 `
 
 const RightSide = styled.div`
@@ -56,7 +71,7 @@ const RightSide = styled.div`
 const Button = styled.button`
   display: flex;
   align-items: center;
-  margin-left: 1vw;
+  margin: 0 1.5vw;
 `
 
 const Profile = styled.button`

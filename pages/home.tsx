@@ -2,7 +2,8 @@ import {FC} from "react";
 import Head from 'next/head'
 import {
   Layout,
-  Main
+  Main,
+  ExchangeAndWallet
 } from '../components/styles/sharedstyles'
 
 import {wrapper} from "../redux/store";
@@ -10,6 +11,8 @@ import {fetchCoinsChart, fetchCurrencies} from "../redux/slices/currencies/slice
 import Currencies from "../components/home/Currencies";
 import Exchange from "../components/home/Exchange";
 import Nav from "../components/layouts/Nav";
+import Wallet from '../components/home/Wallet';
+import NFTs from '../components/home/NFTs';
 
 
 const Home:FC = ():JSX.Element => {
@@ -25,8 +28,12 @@ const Home:FC = ():JSX.Element => {
         <Nav/>
         <Main>
           <Currencies />
+          <NFTs />
         </Main>
-        <Exchange />
+        <ExchangeAndWallet>
+          <Wallet />
+          <Exchange />
+        </ExchangeAndWallet>
       </Layout>
     </>
   )

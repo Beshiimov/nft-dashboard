@@ -18,7 +18,7 @@ const GlobalStyle = createGlobalStyle`
     ${adaptiveValue('font-size', 14, 20, 1)}
     font-family: ${poppins.style.fontFamily}, Sans-Serif;
     font-weight: 400;
-    transition: color .3s ease;
+    overflow-x: hidden;
   }
 
   * {
@@ -29,6 +29,7 @@ const GlobalStyle = createGlobalStyle`
     cursor: pointer;
     color: inherit;
     text-decoration: none;
+    transition: color .3s ease;
   }
 
   button, input {
@@ -36,6 +37,8 @@ const GlobalStyle = createGlobalStyle`
     border: 0;
     background-color: transparent;
     cursor: pointer;
+    overflow-y: hidden;
+    transition: color .3s ease;
   }
 
   h1 {
@@ -65,13 +68,34 @@ const GlobalStyle = createGlobalStyle`
     }
   }
 
-  img {
+  li {
+      list-style: none;
+  }
+  
+  p {
+    ${adaptiveValue('font-size', 12, 18, 1)};
+    margin: 0;
   }
 
   input {
     color: ${({theme}) => theme.colors.primary};
     cursor: auto;
   }
+  
+  p, span, h1, h2, h3, h4, a {
+    transition: color .3s ease;
+  }
+  
+  div, a {
+    transition: background-color .3s ease;
+  }
 `
+
+export const sizes = {
+  mobileS: '320px',
+  mobileL: '425px',
+  tablet: '768px',
+  laptop: '1024px',
+}
 
 export default GlobalStyle

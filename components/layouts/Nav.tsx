@@ -2,40 +2,45 @@ import Link from "next/link";
 import Image from "next/image"
 import styled from 'styled-components'
 
-import homeImage from "/public/icons/home.svg"
-import marketImage from "/public/icons/market.svg"
 import {FC} from "react";
-import {adaptiveValue} from "../styles/px2vw";
+import {adaptiveValue} from '../styles/px2vw';
 
 
 
 const NavContainer = styled.div`
-  position: sticky;
-  ${adaptiveValue('top', 49, 68, 1)};
-  left: 0;
-  height:  calc(100vh - (49px + 20 * ((100vw - 320px) / 1660)));
+  position: fixed;
+  z-index: 99;
+  left: 50%;
+  ${adaptiveValue('bottom', 5, 10, 1)}
+  transform: translateX(-50%);
+  backdrop-filter: blur(5px);
+  border-radius: 8px;
+  mix-blend-mode: difference;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  width: fit-content;
-  min-height: 400px;
   text-align: center;
   color: ${({theme}) => theme.colors.primary};
-  border-right: 1px solid ${({theme}) => theme.colors.primary};
-  padding: 0 5px;
-  ${adaptiveValue('width', 40, 70, 1)}
+  border: 3px solid ${({theme}) => theme.colors.background};
 `
 
 const Column = styled.div`
-  margin-top: -10vh;
   display: flex;
   align-items: center;
-  flex-direction: column;
   & a {
+    display: flex;
+    align-items: center;
+    padding: 10px 15px;
+    margin: 5px;
     height: auto;
-    margin: 8px 0;
-    & img {
-      filter: invert(${({theme}) => theme.colors.primary === '#000'? 0 : 1});
+
+    &:first-child p {
+      border-bottom: 3px solid ${({theme}) => theme.colors.secondary};
+    }
+    p {
+      border-bottom: 3px solid transparent;
+      color: #fff;
+      font-weight: 600;
     }
   }
 `
@@ -47,10 +52,10 @@ const Nav:FC = ():JSX.Element => {
     <NavContainer>
       <Column>
         <Link href="/home">
-          <Image src={homeImage} alt="Home" height={25} width={25}/>
+          <p>Home</p>
         </Link>
         <Link href="/market">
-          <Image src={marketImage} alt="Index" height={25} width={25}/>
+          <p>Market</p>
         </Link>
       </Column>
     </NavContainer>
