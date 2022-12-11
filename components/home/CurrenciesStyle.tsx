@@ -15,7 +15,7 @@ const CurrenciesContainer = styled.div`
   }
 `
 const CurrenciesItem = styled(Link)`
-  ${adaptiveValue('height', 65, 120, 1)}
+  ${adaptiveValue('height', 75, 120, 1)}
   position: relative;
   border-radius: 12px;
   background-color: ${({theme}) => theme.colors.background};
@@ -62,7 +62,7 @@ const Currency = styled.p`
 `
 
 const BgChart = styled.div`
-  opacity: .4;
+  opacity: .6;
   position: absolute;
   top: 0;
   left: 0;

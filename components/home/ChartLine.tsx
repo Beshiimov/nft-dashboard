@@ -34,15 +34,15 @@ const data = (element, growUp) => {
       {
         label: "",
         lineTension: 0.5,
-        borderWidth: 3,
+        borderWidth: 2,
         borderColor: growUp ? "rgba(75,192,192,1)" : "rgba(168,41,23,0.8)",
         fill: "start",
         backgroundColor: (context) => {
           const ctx = context.chart.ctx;
           const gradient = ctx.createLinearGradient(0, 0, 0, 120);
-          growUp ? gradient.addColorStop(.1, "rgba(0,255,62,0.7)") :
-            gradient.addColorStop(.1, "rgba(220,9,9,0.7)");
-          gradient.addColorStop(.9, "rgba(0,0,0,0)");
+          growUp ? gradient.addColorStop(0, "rgba(0,255,62, 0.9)") :
+            gradient.addColorStop(0, "rgba(220,9,9,0.9)");
+          gradient.addColorStop(.7, "rgba(0,0,0,0)");
           return gradient;
         },
         borderJoinStyle: "miter",
@@ -74,8 +74,8 @@ const options = {
   },
   layout: {
     padding: {
-      top: 35,
-      bottom: 20
+      top: 30,
+      bottom: 5
     },
   }
 };

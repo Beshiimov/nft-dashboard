@@ -10,7 +10,12 @@ const NFTs:FC = () => {
 	const [count, setCount] = useState(20)
 
 	const NFT = (key = 1) => <Block key={key}>
-		<Image src={ape} height={300} width={250} alt="Nft" quality={100} />
+		<Image src={ape}
+					 height={300}
+					 width={250}
+					 alt="Nft"
+					 quality={100}
+		/>
 		<p>author</p>
 		<Title><h3>Bored Ape</h3></Title>
 		<li>
@@ -20,7 +25,8 @@ const NFTs:FC = () => {
 	</Block>
 
   const filledArray = Array(count).fill(0);
-  const NFTCollection = filledArray.map((_, index) => NFT(index))
+  const NFTCollection = filledArray
+	.map((_, index) => NFT(index))
 
 
 	return (
@@ -33,12 +39,22 @@ const NFTs:FC = () => {
 				next={() => setCount(count +5)}
 				hasMore={count < 100}
 				loader={<h4>Loading...</h4>}
-				endMessage={<h2 style={{color: "saddlebrown"}}>It's All NFTs</h2>}
+				endMessage={<h2 style={{color: "saddlebrown"}}>
+						It's All NFTs
+					</h2>
+				}
 			>
 				<NftBlocks>
 					{NFTCollection}
 				</NftBlocks>
 			</InfiniteScroll>
+			{count < 100 &&
+				<button style={{backgroundColor: 'gray', borderRadius: 8}}
+								onClick={() => setCount(count + 15)}
+			>
+				Load More
+			</button>
+			}
 		</NFTsContainer>
 	);
 };

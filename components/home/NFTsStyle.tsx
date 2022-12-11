@@ -25,7 +25,7 @@ const Block = styled.div`
     transition: all .3s ease;
     margin-bottom: -5px;
     &:hover {
-      transform: scale(1.06);
+      transform: scale(1.07);
     }
   }
   p {

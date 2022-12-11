@@ -29,7 +29,6 @@ const GlobalStyle = createGlobalStyle`
     cursor: pointer;
     color: inherit;
     text-decoration: none;
-    transition: color .3s ease;
   }
 
   button, input {
@@ -38,7 +37,6 @@ const GlobalStyle = createGlobalStyle`
     background-color: transparent;
     cursor: pointer;
     overflow-y: hidden;
-    transition: color .3s ease;
   }
 
   h1 {
@@ -81,13 +79,15 @@ const GlobalStyle = createGlobalStyle`
     color: ${({theme}) => theme.colors.primary};
     cursor: auto;
   }
-  
-  p, span, h1, h2, h3, h4, a {
-    transition: color .3s ease;
+
+  div, body {
+    transition: background-color .3s ease;
   }
   
-  div, a {
-    transition: background-color .3s ease;
+  p, span, h1, h2, h3, h4, a, button {
+    transition-property: color, opacity;
+    transition-duration: .3s;
+    transition-timing-function: ease;
   }
 `
 

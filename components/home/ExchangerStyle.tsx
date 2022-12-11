@@ -73,7 +73,7 @@ const Title = styled.div`
   }
 `
 
-const InputTitle = styled.div`
+const InputTitle = styled.p`
   opacity: .6;
   ${adaptiveValue('font-size', 12, 16, 1)}
   ${adaptiveValue('line-height', 16, 22, 1)}
