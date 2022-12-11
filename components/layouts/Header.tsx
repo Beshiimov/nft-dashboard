@@ -84,6 +84,15 @@ const Profile = styled.button`
     ${adaptiveValue('margin-right', 8, 12, 1)}
     opacity: .7;
   }
+  @media (max-width: ${sizes.mobileL}) {
+    & {
+      padding: 0;
+      background-color: transparent;
+    }  
+    & span {
+     display: none;
+} 
+  }
 `
 
 const Header = () => {
@@ -126,7 +135,7 @@ const Header = () => {
         </Button>
         <Profile>
           <span>User</span>
-          <Image src={ava} width={20} height={20}  alt="Avatar" />
+          <Image src={ava} width={25} height={25}  alt="Avatar" />
         </Profile>
       </RightSide>
 

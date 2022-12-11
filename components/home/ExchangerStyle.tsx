@@ -1,5 +1,6 @@
 import styled, {keyframes} from "styled-components";
 import {adaptiveValue} from "../styles/px2vw";
+import {initialize} from 'next/client';
 
 const openAnimation = keyframes`
   0% {
@@ -12,6 +13,7 @@ const openAnimation = keyframes`
   }
   100% {
     pointer-events: auto;
+    opacity: 1;
     ${adaptiveValue('height', 160, 200, 1)};
   }
 `
@@ -112,12 +114,11 @@ const Button = styled.div<{open: boolean}>`
   & > img:last-child {
     margin: 3px 10px 0 3px;
     transition: all .5s ease;
-    //transform: rotate(180deg);
     transform: rotate(${({ open }) => (open ? "180deg" : 0)});
   }
 `
 
-const CoinList = styled.div<{open: boolean}>`
+const CoinList = styled.div<{open: boolean, initialize: boolean}>`
   background-color: ${({theme}) => theme.colors.background};
   position: absolute;
   z-index: 9;
@@ -132,10 +133,15 @@ const CoinList = styled.div<{open: boolean}>`
   justify-content: space-between;
   flex-direction: column;
   overflow: hidden;
-  animation: ${({ open }) => 
-          (open === false ? closeAnimation : openAnimation)} 
-  .5s ease forwards;
+  opacity: 0;
   transition: all .3s ease;
+  animation: ${({ open, initialize }) => {
+    if (!initialize) return 'none'
+    else {
+      if (open) return openAnimation
+      if (!open) return closeAnimation
+    }
+  }} .5s ease forwards;
 
   & button {
     overflow-y: hidden;
@@ -145,9 +151,9 @@ const CoinList = styled.div<{open: boolean}>`
     align-items: center;
     justify-content: space-between;
     border-right: 2px solid transparent;
-    animation: ${({ open }) =>
-            (open === false ? closeButtonAnimation : openButtonAnimation)} .5s ease forwards;;
-    transition: all .3s ease;
+    animation: ${({ open, initialize }) =>
+            (open && openButtonAnimation || (initialize && open === false && closeButtonAnimation) || "none")}
+    .5s ease forwards;
 
     &:hover {
       border-right: 2px solid ${({theme}) => theme.colors.secondary};

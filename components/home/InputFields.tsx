@@ -25,6 +25,7 @@ const InputFields:FC<InputFieldsType> = ({
     coins
   }) => {
   const [isOpen, setIsOpen] = useState(false)
+  const initialize = useRef(false)
 
   if (coins.length === 0) return <>Something Gone Wrong...</>
 
@@ -33,6 +34,7 @@ const InputFields:FC<InputFieldsType> = ({
 
 
   const setFields = (e: ChangeEvent<HTMLInputElement>) => {
+
     let value = e.target.value
       .replace(/[^0-9.]/g, '')
       .replace(/(\..*?)\..*/g, '$1')
@@ -45,6 +47,7 @@ const InputFields:FC<InputFieldsType> = ({
   const setModalWindow = (boolean?: boolean) => {
     setIsOpen(boolean ? boolean : !isOpen)
     setInput(fieldNumber, index)
+    initialize.current = true
   }
 
   const onClickButton = (i: number) => {
@@ -89,7 +92,7 @@ const InputFields:FC<InputFieldsType> = ({
             width={10} height={10}
           />
         </Button>
-        <CoinList open={isOpen} ref={coinListRef}>
+        <CoinList open={isOpen} initialize={initialize.current} ref={coinListRef}>
           {coins.map((e, i:number) => i !== index &&
               <button key={e.Name} onClick={() => onClickButton(i)}>
               <h4>{e.Name}</h4>

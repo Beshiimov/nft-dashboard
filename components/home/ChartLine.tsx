@@ -40,10 +40,9 @@ const data = (element, growUp) => {
         backgroundColor: (context) => {
           const ctx = context.chart.ctx;
           const gradient = ctx.createLinearGradient(0, 0, 0, 120);
-          growUp ?
-            gradient.addColorStop(.1, "rgb(0,255,62)") :
-            gradient.addColorStop(.1, "rgb(220,9,9)");
-          gradient.addColorStop(1, "rgba(0,0,0,0)");
+          growUp ? gradient.addColorStop(.1, "rgba(0,255,62,0.7)") :
+            gradient.addColorStop(.1, "rgba(220,9,9,0.7)");
+          gradient.addColorStop(.9, "rgba(0,0,0,0)");
           return gradient;
         },
         borderJoinStyle: "miter",
@@ -76,6 +75,7 @@ const options = {
   layout: {
     padding: {
       top: 35,
+      bottom: 20
     },
   }
 };
